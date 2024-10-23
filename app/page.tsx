@@ -1,9 +1,8 @@
 'use client'
 
-import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
 
-interface UserData{
+interface UserData {
   id: number;
   first_name: string;
   last_name?: string;
@@ -16,9 +15,19 @@ export default function Home() {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    if (WebApp.initDataUnsafe.user) {
-      setUserData(WebApp.initDataUnsafe.user as UserData);
-    }
+    // Import WebApp dynamically only on the client side
+    const initializeWebApp = async () => {
+      try {
+        const WebApp = (await import('@twa-dev/sdk')).default;
+        if (WebApp.initDataUnsafe.user) {
+          setUserData(WebApp.initDataUnsafe.user as UserData);
+        }
+      } catch (error) {
+        console.error('Error initializing WebApp:', error);
+      }
+    };
+
+    initializeWebApp();
   }, []);
 
   return (
@@ -35,7 +44,7 @@ export default function Home() {
           </ul>
         </div>
       ) : (
-        <p>Loading user data.....</p>
+        <p>Ronakkkk</p>
       )}
     </main>
   );
