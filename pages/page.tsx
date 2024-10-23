@@ -1,6 +1,6 @@
 'use client'
 
-import WebApp from "@twa-dev/sdk";
+
 import { useEffect, useState } from "react";
 
 interface UserData {
@@ -23,7 +23,9 @@ export default function Home() {
         if (WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user as UserData);
         }
-
+        WebApp.MainButton.setText('VERIFY CONTACTS');
+    WebApp.MainButton.onClick(handleContactVerification);
+    WebApp.MainButton.show();
         
       } catch (error) {
         console.error('Error initializing WebApp:', error);
@@ -32,9 +34,7 @@ export default function Home() {
 
     initializeWebApp();
 
-    WebApp.MainButton.setText('VERIFY CONTACTS');
-    WebApp.MainButton.onClick(handleContactVerification);
-    WebApp.MainButton.show();
+    
   }, []);
 
   return (
@@ -52,7 +52,7 @@ export default function Home() {
           </ul>
         </div>
       ) : (
-        <p>Ronakkkk</p>
+        <p>Ronak</p>
       )}
     </main>
   );
