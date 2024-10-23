@@ -22,6 +22,9 @@ export default function Home() {
         if (WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user as UserData);
         }
+        WebApp.MainButton.setText('VERIFY CONTACTS');
+        WebApp.MainButton.onClick(() => handleContactVerification());
+        WebApp.MainButton.show();
       } catch (error) {
         console.error('Error initializing WebApp:', error);
       }
@@ -32,8 +35,10 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-2xl font-bold">GCaller</h1>
       {userData ? (
         <div>
+           
           <ul>
             <li>ID: {userData.id}</li>
             <li>First Name: {userData.first_name}</li>
@@ -48,4 +53,8 @@ export default function Home() {
       )}
     </main>
   );
+}
+
+function handleContactVerification() {
+  throw new Error("Function not implemented.");
 }
