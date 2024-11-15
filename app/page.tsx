@@ -42,7 +42,7 @@ export default function Home() {
         setContacts([
           {
             id: '1',
-            first_name: 'John',
+            first_name: 'Johnny',
             last_name: 'Doe',
             phone_number: '+1234567890',
             username: 'johndoe'
