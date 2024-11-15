@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import type { WebApp, WebAppUser } from "@twa-dev/types";
 
 interface UserData {
   id: number;
@@ -18,12 +19,11 @@ interface Contact {
 }
 
 export default function Home() {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<WebAppUser | null>(null);
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [webApp, setWebApp] = useState<any>(null);
+  const [webApp, setWebApp] = useState<WebApp | null>(null);
 
   useEffect(() => {
     const initializeWebApp = async () => {
@@ -34,9 +34,7 @@ export default function Home() {
         WebApp.ready();
         WebApp.expand();
 
-        if (WebApp.initDataUnsafe.user) {
-          setUserData(WebApp.initDataUnsafe.user as UserData);
-        }
+        setUserData(WebApp?.initDataUnsafe?.user ?? null);
 
         // Initialize the main button for contact sharing
         WebApp.MainButton.setText('Share Contact');
@@ -98,7 +96,7 @@ export default function Home() {
       });
 
       // Show success message
-      webApp.showPopup({
+      webApp!.showPopup({
         message: 'Contact added successfully!',
         buttons: [{ type: 'ok' }]
       });
@@ -106,16 +104,6 @@ export default function Home() {
     } catch (error) {
       console.error('Error handling contact:', error);
       setError('Failed to add contact');
-    }
-  };
-
-  const toggleFullscreen = () => {
-    if (webApp) {
-      if (webApp.isExpanded) {
-        webApp.collapse();
-      } else {
-        webApp.expand();
-      }
     }
   };
 
@@ -182,14 +170,6 @@ export default function Home() {
           </p>
         )}
       </div>
-
-      {/* Toggle Fullscreen Button */}
-      <button
-        onClick={toggleFullscreen}
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Toggle Fullscreen
-      </button>
     </main>
   );
 }
