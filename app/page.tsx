@@ -38,10 +38,23 @@ export default function Home() {
           setUserData(WebApp.initDataUnsafe.user as UserData);
         }
 
-        // Set up the main button for contact access
-        WebApp.MainButton.setText('SHARE CONTACTS');
-        WebApp.MainButton.onClick(requestContactAccess);
-        WebApp.MainButton.show();
+        // Adding test contacts immediately for debugging
+        setContacts([
+          {
+            id: '1',
+            first_name: 'John',
+            last_name: 'Doe',
+            phone_number: '+1234567890',
+            username: 'johndoe'
+          },
+          {
+            id: '2',
+            first_name: 'Jane',
+            last_name: 'Smith',
+            phone_number: '+1987654321',
+            username: 'janesmith'
+          }
+        ]);
 
       } catch (error) {
         console.error('Error initializing WebApp:', error);
@@ -52,63 +65,32 @@ export default function Home() {
     initializeWebApp();
   }, []);
 
-  const requestContactAccess = async () => {
+  const handleShareContacts = () => {
     if (!webApp) return;
-
+    
     setIsLoading(true);
-    setError(null);
-
     try {
-      // Request contacts access through Telegram's native UI
-      webApp.showPopup({
-        title: 'Share Contacts',
-        message: 'Would you like to share your contacts with GCaller?',
-        buttons: [
-          {
-            id: 'share_contacts',
-            type: 'request_contact',
-            text: 'Share Contacts'
-          },
-          {
-            id: 'cancel',
-            type: 'cancel',
-            text: 'Cancel'
-          }
-        ]
-      }, (buttonId: string) => {
-        if (buttonId === 'share_contacts') {
-          // When user agrees to share contacts
-          handleContactShare();
-        }
-      });
-    } catch (error) {
-      console.error('Error requesting contacts:', error);
-      setError('Failed to request contact access');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleContactShare = async () => {
-    if (!webApp) return;
-
-    try {
-      // You'll need to implement your own backend endpoint to handle contact sharing
-      // For now, we'll just simulate receiving contacts
-      const sampleContacts: Contact[] = [
+      // Add these contacts to demonstrate functionality
+      const newContacts: Contact[] = [
         {
-          id: '1',
-          first_name: 'John',
-          last_name: 'Doe',
-          phone_number: '+1234567890',
-          username: 'johndoe'
+          id: '3',
+          first_name: 'Alice',
+          last_name: 'Johnson',
+          phone_number: '+1122334455',
+          username: 'alicej'
         },
-        // Add more sample contacts as needed
+        {
+          id: '4',
+          first_name: 'Bob',
+          last_name: 'Wilson',
+          phone_number: '+5544332211',
+          username: 'bobw'
+        }
       ];
-
-      setContacts(sampleContacts);
       
-      // Show success message
+      setContacts(prevContacts => [...prevContacts, ...newContacts]);
+      console.log('Contacts updated:', contacts); // Debug log
+      
       webApp.showPopup({
         title: 'Success',
         message: 'Contacts shared successfully!',
@@ -116,10 +98,11 @@ export default function Home() {
           type: 'ok'
         }]
       });
-
     } catch (error) {
       console.error('Error handling contacts:', error);
       setError('Failed to process contacts');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -133,10 +116,20 @@ export default function Home() {
     }
   };
 
+  console.log('Current contacts:', contacts); // Debug log
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-2xl font-bold mb-6">GCaller</h1>
       
+      {/* Share Contacts Button */}
+      <button
+        onClick={handleShareContacts}
+        className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+      >
+        Share Contacts
+      </button>
+
       {/* Toggle Fullscreen Button */}
       <button
         onClick={toggleFullscreen}
@@ -174,10 +167,15 @@ export default function Home() {
         </div>
       )}
 
+      {/* Debug Info */}
+      <div className="mb-4 p-4 bg-yellow-100 rounded">
+        <p>Number of contacts: {contacts.length}</p>
+      </div>
+
       {/* Contacts Display */}
-      {contacts.length > 0 && (
-        <div className="w-full max-w-md">
-          <h2 className="text-xl font-semibold mb-2">Shared Contacts</h2>
+      <div className="w-full max-w-md">
+        <h2 className="text-xl font-semibold mb-2">Contacts ({contacts.length})</h2>
+        {contacts.length > 0 ? (
           <div className="bg-white shadow rounded-lg">
             {contacts.map((contact) => (
               <div key={contact.id} className="p-4 border-b last:border-b-0">
@@ -191,8 +189,10 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <p className="text-gray-500">No contacts shared yet</p>
+        )}
+      </div>
     </main>
   );
 }
