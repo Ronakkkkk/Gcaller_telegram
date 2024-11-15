@@ -2,15 +2,6 @@
 import { useEffect, useState } from "react";
 import type { WebApp, WebAppUser } from "@twa-dev/types";
 
-interface UserData {
-  id: number;
-  first_name: string;
-  last_name?: string;
-  username?: string;
-  language_code: string;
-  is_premium?: boolean;
-}
-
 interface Contact {
   user_id: string;
   first_name: string;
