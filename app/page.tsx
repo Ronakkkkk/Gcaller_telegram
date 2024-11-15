@@ -11,11 +11,10 @@ interface UserData {
 }
 
 interface Contact {
-  id: string;
+  user_id: string;
   first_name: string;
   last_name?: string;
   phone_number: string;
-  username?: string;
 }
 
 export default function Home() {
@@ -28,6 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     const initializeWebApp = async () => {
+      setIsLoading(true);
       try {
         const WebApp = (await import('@twa-dev/sdk')).default;
         setWebApp(WebApp);
@@ -38,71 +38,74 @@ export default function Home() {
           setUserData(WebApp.initDataUnsafe.user as UserData);
         }
 
-        // Adding test contacts immediately for debugging
-        setContacts([
-          {
-            id: '1',
-            first_name: 'John',
-            last_name: 'Doe',
-            phone_number: '+1234567890',
-            username: 'johndoe'
-          },
-          {
-            id: '2',
-            first_name: 'Jane',
-            last_name: 'Smith',
-            phone_number: '+1987654321',
-            username: 'janesmith'
-          }
-        ]);
+        // Initialize the main button for contact sharing
+        WebApp.MainButton.setText('Share Contact');
+        WebApp.MainButton.onClick(requestContactShare);
+        WebApp.MainButton.show();
 
       } catch (error) {
         console.error('Error initializing WebApp:', error);
         setError('Failed to initialize Telegram Web App');
+      } finally {
+        setIsLoading(false);
       }
     };
 
     initializeWebApp();
   }, []);
 
-  const handleShareContacts = () => {
+  const requestContactShare = () => {
     if (!webApp) return;
-    
-    setIsLoading(true);
+
     try {
-      // Add these contacts to demonstrate functionality
-      const newContacts: Contact[] = [
-        {
-          id: '3',
-          first_name: 'Alice',
-          last_name: 'Johnson',
-          phone_number: '+1122334455',
-          username: 'alicej'
-        },
-        {
-          id: '4',
-          first_name: 'Bob',
-          last_name: 'Wilson',
-          phone_number: '+5544332211',
-          username: 'bobw'
-        }
-      ];
-      
-      setContacts(prevContacts => [...prevContacts, ...newContacts]);
-      console.log('Contacts updated:', contacts); // Debug log
-      
+      // Use Telegram's native contact picker
       webApp.showPopup({
-        title: 'Success',
-        message: 'Contacts shared successfully!',
-        buttons: [{
-          type: 'ok'
-        }]
+        title: 'Share Contact',
+        message: 'Please select a contact to share',
+        buttons: [
+          { type: 'request_contact', text: 'Select Contact' },
+          { type: 'cancel' }
+        ]
+      }, (buttonId: string, contact: Contact) => {
+        if (buttonId === 'request_contact' && contact) {
+          handleNewContact(contact);
+        }
       });
     } catch (error) {
-      console.error('Error handling contacts:', error);
-      setError('Failed to process contacts');
-    } finally {
-      setIsLoading(false);
+      console.error('Error requesting contact:', error);
+      setError('Failed to request contact selection');
+    }
+  };
+
+  const handleNewContact = (contact: Contact) => {
+    try {
+      // Format the contact data
+      const newContact: Contact = {
+        user_id: contact.user_id?.toString() || Date.now().toString(),
+        first_name: contact.first_name,
+        last_name: contact.last_name,
+        phone_number: contact.phone_number
+      };
+
+      // Add the new contact to the list
+      setContacts(prevContacts => {
+        // Check if contact already exists
+        const exists = prevContacts.some(c => c.user_id === newContact.user_id);
+        if (!exists) {
+          return [...prevContacts, newContact];
+        }
+        return prevContacts;
+      });
+
+      // Show success message
+      webApp.showPopup({
+        message: 'Contact added successfully!',
+        buttons: [{ type: 'ok' }]
+      });
+
+    } catch (error) {
+      console.error('Error handling contact:', error);
+      setError('Failed to add contact');
     }
   };
 
@@ -116,28 +119,10 @@ export default function Home() {
     }
   };
 
-  console.log('Current contacts:', contacts); // Debug log
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-2xl font-bold mb-6">GCaller</h1>
       
-      {/* Share Contacts Button */}
-      <button
-        onClick={handleShareContacts}
-        className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-      >
-        Share Contacts
-      </button>
-
-      {/* Toggle Fullscreen Button */}
-      <button
-        onClick={toggleFullscreen}
-        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Toggle Fullscreen
-      </button>
-
       {/* Error Display */}
       {error && (
         <div className="mb-4 p-4 bg-red-100 text-red-700 rounded">
@@ -151,6 +136,14 @@ export default function Home() {
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
         </div>
       )}
+
+      {/* Share Contacts Instructions */}
+      <div className="mb-6 p-4 bg-blue-50 rounded text-center">
+        <p>Click the button below to share contacts</p>
+        <p className="text-sm text-gray-600 mt-2">
+          You can share multiple contacts one at a time
+        </p>
+      </div>
 
       {/* User Data Display */}
       {userData && (
@@ -167,32 +160,36 @@ export default function Home() {
         </div>
       )}
 
-      {/* Debug Info */}
-      <div className="mb-4 p-4 bg-yellow-100 rounded">
-        <p>Number of contacts: {contacts.length}</p>
-      </div>
-
       {/* Contacts Display */}
       <div className="w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-2">Contacts ({contacts.length})</h2>
+        <h2 className="text-xl font-semibold mb-2">
+          Shared Contacts ({contacts.length})
+        </h2>
         {contacts.length > 0 ? (
           <div className="bg-white shadow rounded-lg">
             {contacts.map((contact) => (
-              <div key={contact.id} className="p-4 border-b last:border-b-0">
+              <div key={contact.user_id} className="p-4 border-b last:border-b-0">
                 <h3 className="font-medium">
                   {contact.first_name} {contact.last_name}
                 </h3>
                 <p className="text-gray-600">{contact.phone_number}</p>
-                {contact.username && (
-                  <p className="text-gray-500">@{contact.username}</p>
-                )}
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">No contacts shared yet</p>
+          <p className="text-gray-500 text-center p-4">
+            No contacts shared yet. Use the button below to share contacts.
+          </p>
         )}
       </div>
+
+      {/* Toggle Fullscreen Button */}
+      <button
+        onClick={toggleFullscreen}
+        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        Toggle Fullscreen
+      </button>
     </main>
   );
 }
