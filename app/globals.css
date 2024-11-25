@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.control-dots {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  gap: 16px;
+  position: static !important;
+}
