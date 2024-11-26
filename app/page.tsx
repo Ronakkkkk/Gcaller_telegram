@@ -1,4 +1,5 @@
 'use client';
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface UserData {
@@ -121,6 +122,10 @@ export default function Home() {
       >
         Share Contacts
       </button>
+
+      <h1 >
+  Read <Link href="/onboarding">this page!</Link>
+</h1>
 
      
      
