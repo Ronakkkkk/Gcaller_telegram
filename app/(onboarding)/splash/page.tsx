@@ -24,7 +24,7 @@ export default function SplashPage() {
         <Image 
         src={"/images/logo.png"}
         alt="Logo"
-        width={130}
+        width={144}
         height={144}
         
         priority
