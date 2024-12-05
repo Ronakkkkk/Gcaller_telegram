@@ -19,19 +19,26 @@ export default function SplashPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.gradient}></div>
-      <div className={styles.logo}>
-        <Image 
-        src={"/images/logo.png"}
+    <div className={styles.gradient}></div>
+    <div className={styles.logo}>
+      <Image 
+        src="/images/logo.png"
         alt="Logo"
         width={144}
         height={144}
-        
         priority
-        />
-      </div>
-      <span className="text-3xl font-bold">CN</span>
-
+      />
+      <span className={styles.logotext}>CallNetwork</span>
     </div>
+    <div className={styles.bottomrect}>
+      <Image 
+        src="/images/splashrect.png"
+        alt="Rectangle"
+        width={144}
+        height={144}
+        priority
+      />
+    </div>
+  </div>
   );
 }
