@@ -1,0 +1,156 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 14px;
+  margin-top: 3rem;
+}
+
+.indicatorDot {
+  width: 100px;
+  height: 6px;
+  transition: background-color 0.3s;
+}
+
+.indicatorDot.active {
+  background-color: #9747ff;
+}
+
+.indicatorDot.unactive {
+  background-color: #9747ff;
+  opacity: 30%;
+}
+
+.scrollContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 65%;
+  overflow: hidden;
+  justify-content: center;
+  
+  margin-top: 2.5rem;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon {
+  margin-bottom: 1rem;
+  align-self: center; 
+  justify-self: center; 
+}
+
+.title {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 2rem;
+  line-height: 25px;
+}
+
+.description {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #fff;
+  opacity: 80%;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  background: linear-gradient(180deg, rgba(151, 71, 255, 0.4) 0%, rgba(151, 71, 255, 0.4) 100%);
+  border-radius: 15px;
+  padding: 24px;
+  margin: 2rem   2rem;
+  width: 85%;
+ height: 300px;
+ /* border: 0.3px solid rgba(255, 255, 255, 0.6); */
+ border: 0.6px solid #FFFFFF99
+ 
+}
+
+.titlethird {
+  font-size: 22px;
+  color: #fff;
+  line-height: 32px;
+  font-weight: 500;
+ align-self: center; 
+ margin-top: 2rem;
+}
+
+
+
+.textContainer {
+  margin-top: 2rem;
+}
+
+.controls {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2.75rem;
+}
+
+.navButton {
+  border:  1.4px solid whitesmoke;
+  
+  width: 40px;
+  height: 40px;
+  padding: 0px 10px;
+  
+  background: linear-gradient(180deg, rgba(115, 115, 115, 0.4) 0%, rgba(115, 115, 115, 0.4) 100%);
+
+  color: #fff;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 25px;
+  transition: background 0.3s;
+}
+/* .navButton:hover {
+  background: rgba(151, 71, 255, 0.8);
+} */
+
+
+
+.launchButton {
+  width: 212px;
+  height: 60px;
+  padding: 1rem;
+  background:#9747FF;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+  
+ 
+  transition: background 0.3s;
+}
+
+.launchButton:hover {
+  background: #8644e1;
+}
