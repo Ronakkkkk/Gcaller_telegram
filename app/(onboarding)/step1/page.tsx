@@ -2,8 +2,10 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./page1.module.css";
+import { useRouter } from "next/navigation";
 
 export default function Step1Page() {
+  const router = useRouter();
   const slides = [
     {
       icon: "/icons/onboarding/onbo1.png",
@@ -76,6 +78,10 @@ export default function Step1Page() {
     }
   };
 
+  const handleLaunch = () =>{
+    router.push('/step2')
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.indicator}>
@@ -126,7 +132,7 @@ export default function Step1Page() {
         </button>
       </div>
 
-      <button className={styles.launchButton}>Launch App</button>
+      <button onClick={handleLaunch} className={styles.launchButton}>Launch App</button>
     </div>
   );
 }
