@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import styles from "./step2.module.css";
+import { useRouter } from "next/navigation";
+
 
 export default function Step1Page() {
+  const router= useRouter()
+
+  const handleLaunch = ()=>{
+    router.push('/step3')
+  }
   
 
   return (
@@ -16,8 +23,8 @@ export default function Step1Page() {
               <Image
                 src={"/icons/onboarding/onbo4.png"}
                 alt={`Redirect to bot`}
-                width={355}
-                height={355}
+                width={290}
+                height={290}
                 className={styles.icon}
               />
               
@@ -28,7 +35,7 @@ export default function Step1Page() {
 
       
 
-      <button className={styles.launchButton}>Continue</button>
+      <button onClick={handleLaunch} className={styles.launchButton}>Continue</button>
     </div>
   );
 }
