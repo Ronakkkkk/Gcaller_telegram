@@ -19,7 +19,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ profilePictureUrl, phNo, na
 
     return (
         <div
-            className="bg-[#9747FF] h-[67px] sm:h-[80px] w-full sm:w-[22.4375rem] flex justify-between items-center rounded-lg mt-5 px-4 sm:px-6 py-2"
+            className="bg-[#9747FF] h-[67px] sm:h-[80px] w-full sm:w-[21.375rem] flex justify-between items-center rounded-lg mt-5 px-4 sm:px-6 py-2"
             style={backGroundColor}
         >
             <div className="flex items-center space-x-4 sm:space-x-6">
