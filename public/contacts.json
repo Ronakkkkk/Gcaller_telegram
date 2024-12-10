@@ -1,0 +1,80 @@
+[
+    {
+      "id": 1,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1234567890",
+      "name": "Anam",
+      "verified": true
+    },
+    {
+      "id": 2,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Baman",
+      "verified": true
+    },
+    {
+      "id": 3,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": true
+    },
+    {
+      "id": 4,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "mathew",
+      "verified": true
+    },
+    {
+      "id": 5,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": true
+    },
+    {
+      "id": 6,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": false
+    },
+    {
+      "id": 7,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": false
+    },
+    {
+      "id": 8,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": false
+    },
+    {
+      "id": 9,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": true
+    },
+    {
+      "id": 10,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": true
+    },
+    {
+      "id": 11,
+      "profilePictureUrl": "/icons/contacts/pp.png",
+      "phNo": "+1987654321",
+      "name": "Jane Smith",
+      "verified": true
+    }
+  ]
+  
