@@ -1,138 +1,65 @@
-'use client';
-import { useRef, useState } from "react";
 import Image from "next/image";
+import DashedBorder from "./components/border";
+import Card from "./components/card";
+import CallBalance from "./components/callBalance";
 import styles from "./home.module.css";
-import { useRouter } from "next/navigation";
 
-export default function Step1Page() {
-  const router = useRouter();
-  const slides = [
-    {
-      icon: "/icons/onboarding/onbo1.png",
-      title: (
-        <>
-          Your Trusted Identity, Powered <br /> by Blockchain.
-        </>
-      ),
-      description: (
-        <>
-          Experience secure, decentralized caller <br /> identification with blockchain technology.
-        </>
-      ),
-    },
-    {
-      icon: "/icons/onboarding/onbo2.png",
-      title: (
-        <>
-          Get rewards for identifying <br />spam.
-        </>
-      ),
-      description: "Help the community by identifying spam callers and messages.",
-    },
-    {
-      icon: "/icons/onboarding/onbo3.png",
-      title: (
-        <>
-          You Are Important So Is <br/>Your Data
-        </>
-      ),
-      description: "Block unwanted calls and enjoy a seamless calling experience.",
-    },
-  ];
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const delta = touchStartX - touchEndX;
-
-    e.preventDefault(); // Prevent default touch behavior
-
-    if (Math.abs(delta) > 50) {
-      if (delta > 0 && activeIndex < slides.length - 1) {
-        setActiveIndex((prev) => prev + 1);
-      } else if (delta < 0 && activeIndex > 0) {
-        setActiveIndex((prev) => prev - 1);
-      }
-    }
-
-    setTouchStartX(null); // Reset
-  };
-
-  const handleNext = () => {
-    if (activeIndex < slides.length - 1) {
-      setActiveIndex((prev) => prev + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (activeIndex > 0) {
-      setActiveIndex((prev) => prev - 1);
-    }
-  };
-
-  const handleLaunch = () =>{
-    router.push('/step2')
-  }
-
+export default function Home() {
   return (
-    <div className={styles.container}>
-      <div className={styles.indicator}>
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            className={`${styles.indicatorDot} ${activeIndex === index ? styles.active : styles.unactive}`}
-          ></span>
-        ))}
-      </div>
-      <div className={styles.scrollContainer} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <div key={activeIndex} className={styles.slide}>
-          {activeIndex === 2 ? (
-            
-           <div className="justifycontent-center">
-            <h1 className={styles.titlethird}>{slides[activeIndex].title}</h1>
-            <Image
-                src={slides[activeIndex].icon}
-                alt={`Slide ${activeIndex + 1}`}
-                width={328}
-                height={271}
-                className={styles.textContainer}
+    <div className="bg-black font-poppins w-full">
+      {/* Full-width Profile Picture */}
+      <Image
+        src={"/home/pfp.png"}
+        alt="Profile Picture"
+        height={1000}
+        width={1000}
+        className="w-full"
+        style={{ objectFit: "cover" }} // Use 'cover' for full-width background fit
+        priority
+      />
+
+     
+        <div className={styles.container}>
+          {/* Header */}
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl mt-5">Welcome Kash</h1>
+
+          {/* Pubkey Display */}
+          <div className="flex justify-center mt-3 w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
+            <p className="truncate w-[50%] text-gray-500 text-sm sm:text-base">
+              {`BmQuXK4wJdLEULMvzwyiNE9p7Rj3Pg4pgFfoB1SY53pj`}
+            </p>
+            {/* Clipboard Component Placeholder */}
+            {/* <ClipboardComponent value="BmQuXK4wJdLEULMvzwyiNE9p7Rj3Pg4pgFfoB1SY53pj" /> */}
+          </div>
+
+          {/* Dashed Border */}
+          <DashedBorder />
+
+          {/* Call Balance and Cards */}
+          <div>
+            <CallBalance amount={20} />
+
+            <div className="flex justify-between mt-3">
+              <Card
+                imageurl="/icons/home/contacts.png"
+                smallText="Total"
+                biggerText="Contacts"
+                numberOfSpamOrContacts={100}
               />
-            
-           </div>
-          ) : (
-            <div>
-              <Image
-                src={slides[activeIndex].icon}
-                alt={`Slide ${activeIndex + 1}`}
-                width={308}
-                height={308}
-                className={styles.icon}
+              <div className="ml-1"></div>
+              <Card
+                imageurl="/icons/home/spam.png"
+                smallText="Spam"
+                biggerText="Detected"
+                numberOfSpamOrContacts={30}
               />
-              <h1 className={styles.title}>{slides[activeIndex].title}</h1>
-              <p className={styles.description}>{slides[activeIndex].description}</p>
             </div>
-          )}
+          </div>
+
+          {/* Another Dashed Border */}
+          <DashedBorder />
         </div>
-      </div>
-
-      <div className={styles.controls}>
-        <button onClick={handlePrev} className={styles.navButton} disabled={activeIndex === 0}>
-          &lt;
-        </button>
-        <button onClick={handleNext} className={styles.navButton} disabled={activeIndex === slides.length - 1}>
-          &gt;
-        </button>
-      </div>
-
-      <button onClick={handleLaunch} className={styles.launchButton}>Launch App</button>
+      
     </div>
   );
 }
