@@ -7,10 +7,10 @@ interface AlphaNumericSliderProps{
 
 
 
-const AlphaNumericSlider = ({ list, onClick }) => {
+const AlphaNumericSlider: React.FC<AlphaNumericSliderProps>  = ({ list, onClick }) => {
   const letterList = useRef(null)
 
-  const handleScroll = (e) => {
+  const handleScroll = (e : Event) => {
     console.log('scrolling', e)
   }
 
@@ -23,8 +23,8 @@ const AlphaNumericSlider = ({ list, onClick }) => {
 
   return (
     <div className="alphanum-list" ref={letterList}>
-      {list.map(letter => (
-        <div key={letter} onClick={() => onClick(letter)}>
+      {list.map((letter) => (
+        <div key={letter} onClick={() => onClick()}>
           {letter}
         </div>
       ))}

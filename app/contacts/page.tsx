@@ -21,7 +21,7 @@ const Contacts: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const alphabetList = "abcdefghijklmnopqrstuvwxyz".split("");
+  const alphabetList = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
 
   const fetchContactsData = async () => {
     try {
@@ -61,27 +61,27 @@ const Contacts: React.FC = () => {
   }
 
   const groupedContacts = filteredContacts.reduce((acc, contact) => {
-    const firstLetter = contact.name[0].toLowerCase();
+    const firstLetter = contact.name[0].toUpperCase();
     if (!acc[firstLetter]) acc[firstLetter] = [];
     acc[firstLetter].push(contact);
     return acc;
   }, {} as Record<string, Contact[]>);
 
   return (
-    <div className="bg-black min-h-screen w-full flex flex-col pt-12 px-4 text-white items-center">
+    <div className="bg-black min-h-screen w-full flex flex-col pt-20 px-4 text-white  items-center">
       <Header />
       <Search onSearch={setSearchQuery} />
 
-      <div className="flex mt-4 justify-start w-full sm:w-[24.375rem]">
-        {/* Text Cards aligned left */}
+      <div className="flex mt-[25px] justify-start w-full sm:w-[24.375rem] ">
+        {/* Text Cards */}
         <div className="flex flex-wrap">
           <div onClick={() => setIsVerified(true)} className="mr-4 mb-2">
             <TextCard
               text="Verified"
               style={
                 isVerified
-                  ? { backgroundColor: "rgba(151, 71, 255, 0.3)" }
-                  : {}
+                  ? { }
+                  : {backgroundColor: "rgba(151, 71, 255, 0.3)" }
               }
             />
           </div>
@@ -90,17 +90,17 @@ const Contacts: React.FC = () => {
               text="Not Verified"
               style={
                 !isVerified
-                  ? { backgroundColor: "rgba(151, 71, 255, 0.3)" }
-                  : {}
+                  ? {  }
+                  : {backgroundColor: "rgba(151, 71, 255, 0.3)"}
               }
             />
           </div>
         </div>
       </div>
 
-      <div className="relative w-full max-w-[390px] h-[67vh] mt-6 flex">
+      <div className="relative w-full max-w-[390px] h-[67vh]  flex">
         {/* Contacts Scroll */}
-        <ScrollArea className="h-full w-full pr-[3rem]">
+        <ScrollArea className="w-[90%] h-[70vh] sm:h-[80vh] pr-2 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-800 touch-pan-y">
           {alphabetList.map((letter) => (
             <div key={letter} data-letter-group={letter}>
               {groupedContacts[letter]?.map((contact) => (
@@ -114,6 +114,7 @@ const Contacts: React.FC = () => {
             </div>
           ))}
         </ScrollArea>
+ 
 
         {/* Alphabet Scroller */}
         <div className="absolute right-0 top-0 bottom-0 w-8 flex flex-col py-2 bg-black">
@@ -121,7 +122,7 @@ const Contacts: React.FC = () => {
             <div
               key={letter}
               onClick={() => handleLetterClick(letter)}
-              className="text-xs cursor-pointer hover:text-purple-500 text-center flex-1 flex items-center justify-center"
+              className=" text-xs cursor-pointer hover:text-purple-500 text-center flex-1 flex items-center justify-center"
             >
               {letter}
             </div>
