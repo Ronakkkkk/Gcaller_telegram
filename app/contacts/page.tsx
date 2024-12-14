@@ -100,21 +100,21 @@ const Contacts: React.FC = () => {
 
       <div className="relative w-full max-w-[390px] h-[67vh]  flex">
         {/* Contacts Scroll */}
-        <ScrollArea className="w-[90%] h-[70vh] sm:h-[80vh] pr-2 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-800 touch-pan-y">
-          {alphabetList.map((letter) => (
-            <div key={letter} data-letter-group={letter}>
-              {groupedContacts[letter]?.map((contact) => (
-                <ContactsCard
-                  key={contact.id}
-                  profilePictureUrl={contact.profilePictureUrl}
-                  phNo={contact.phNo}
-                  name={contact.name}
-                />
-              ))}
-            </div>
-          ))}
-        </ScrollArea>
- 
+        <ScrollArea className="w-[90%] h-[67vh] pr-2 pt-4 overflow-y-auto">
+  {alphabetList.map((letter) => (
+    <div key={letter} data-letter-group={letter}>
+      {groupedContacts[letter]?.map((contact) => (
+        <ContactsCard
+          key={contact.id}
+          profilePictureUrl={contact.profilePictureUrl}
+          phNo={contact.phNo}
+          name={contact.name}
+        />
+      ))}
+    </div>
+  ))}
+</ScrollArea>
+
 
         {/* Alphabet Scroller */}
         <div className="absolute right-0 top-0 bottom-0 w-8 flex flex-col py-2 bg-black">
