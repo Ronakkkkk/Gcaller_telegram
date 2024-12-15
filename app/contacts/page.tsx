@@ -4,8 +4,15 @@ import { ScrollArea } from "@/components/contacts/ui/scroll-area";
 import ContactsCard from "@/components/contacts/ContactsCard";
 import Search from "@/components/contacts/Search";
 import Header from "@/components/contacts/Header";
-import axios from "axios";
+import axios from "@/lib/axios";
 import VerifiedNotVerifiedCards from "@/components/contacts/VerifiedNotVerifiedCards";
+
+interface ContactsResponse {
+  status: number;
+  data: Contact[];
+  page: number;
+  perPage: number;
+}
 
 interface Contact {
   id: number;
@@ -14,7 +21,6 @@ interface Contact {
   name: string;
   verified: boolean;
 }
-
 
 const Contacts: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,8 +33,10 @@ const Contacts: React.FC = () => {
 
   const fetchContactsData = async () => {
     try {
-      const response = await axios.get<Contact[]>("/contacts.json");
-      setContacts(response.data);
+      // const { data, status } = await axios.get<ContactsResponse>("contacts/list");
+      // setContacts(data.data);
+      const { data, status } = await axios.get<Contact[]>("contacts.json");
+      setContacts(data);
     } catch (err) {
       setError("Failed to load contacts");
       console.error(err);
@@ -75,10 +83,8 @@ const Contacts: React.FC = () => {
       <Search onSearch={setSearchQuery} />
 
       <div className="flex mt-[25px] justify-start w-full sm:w-[24.375rem] ">
-
         {/* Text Cards */}
         <VerifiedNotVerifiedCards />
-
       </div>
 
       <div className="relative w-full max-w-[390px] h-[67vh] flex ">
@@ -97,7 +103,6 @@ const Contacts: React.FC = () => {
             </div>
           ))}
         </ScrollArea>
-
 
         {/* Alphabet Scroller */}
         <div className="absolute right-0 top-0 bottom-0 w-8 flex flex-col py-2 bg-black">
