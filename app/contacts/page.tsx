@@ -2,7 +2,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { ScrollArea } from "@/components/contacts/ui/scroll-area";
 import ContactsCard from "@/components/contacts/ContactsCard";
-import TextCard from "@/components/contacts/TextCard";
 import Search from "@/components/contacts/Search";
 import Header from "@/components/contacts/Header";
 import axios from "axios";
@@ -18,6 +17,7 @@ interface Contact {
 
 
 const Contacts: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isVerified, setIsVerified] = useState(true);
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
