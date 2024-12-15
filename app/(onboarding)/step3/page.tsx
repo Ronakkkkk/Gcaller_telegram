@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styles from "./step3.module.css";
+import Link from "next/link";
 
 export default function Step1Page() {
   return (
@@ -21,9 +22,9 @@ export default function Step1Page() {
         <p className={styles.description}>{"Contacts Imported Successfully."}</p>
       </div>
 
-      <a href="/" className={styles.launchButton}>
+      <Link href="/" className={styles.launchButton}>
         Continue To App
-      </a>
+      </Link>
     </div>
   );
 }

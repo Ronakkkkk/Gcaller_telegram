@@ -10,6 +10,7 @@ interface ClipboardComponentProps {
 
 const ClipboardComponent: React.FC<ClipboardComponentProps> = ({value} ) => {
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [copied, setCopied] = useState<boolean>(false); // state for copied status
   const { toast } = useToast()
 
