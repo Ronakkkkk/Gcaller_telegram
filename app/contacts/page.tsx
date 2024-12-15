@@ -6,7 +6,7 @@ import TextCard from "@/components/contacts/TextCard";
 import Search from "@/components/contacts/Search";
 import Header from "@/components/contacts/Header";
 import axios from "axios";
-import VerifiedNotVerifiedCards from "@/components/contacts/VerifiedNotVerifiedCards";
+
 
 interface Contact {
   id: number;
@@ -69,20 +69,42 @@ const Contacts: React.FC = () => {
   }, {} as Record<string, Contact[]>);
 
   return (
-    <div className="bg-black min-h-screen w-full flex flex-col pt-[75px] px-4 text-white  items-center">
+    <div className="bg-black min-h-screen w-full flex flex-col text-white  items-center">
+
+      <div className=" mt-[75px] w-full px-4 flex flex-col text-white  items-center">
       <Header />
       <Search onSearch={setSearchQuery} />
 
       <div className="flex mt-[25px] justify-start w-full sm:w-[24.375rem] ">
 
         {/* Text Cards */}
-        <VerifiedNotVerifiedCards />
-
+        <div className="flex flex-wrap font-medium">
+    <div onClick={() => setIsVerified(true)} className="mr-4 mb-2">
+      <TextCard
+        text="Verified"
+        style={
+          isVerified
+            ? {}
+            : {backgroundColor: "rgba(151, 71, 255, 0.3)" }
+        }
+      />
+    </div>
+    <div onClick={() => setIsVerified(false)}>
+      <TextCard
+        text="Not Verified"
+        style={
+          !isVerified
+            ? {}
+            : {backgroundColor: "rgba(151, 71, 255, 0.3)"}
+        }
+      />
+    </div>
+  </div>
       </div>
 
-      <div className="relative w-full max-w-[390px] h-[67vh] flex ">
+      <div className="relative w-full max-w-[390px] h-[68vh] flex ">
         {/* Contacts Scroll */}
-        <ScrollArea className="w-[90%] h-[67vh] pr-2 pt-4 overflow-y-auto">
+        <ScrollArea className="w-[90%] h-[68vh] pr-2 pt-4 overflow-y-auto">
           {alphabetList.map((letter) => (
             <div key={letter} data-letter-group={letter}>
               {groupedContacts[letter]?.map((contact) => (
@@ -99,7 +121,7 @@ const Contacts: React.FC = () => {
 
 
         {/* Alphabet Scroller */}
-        <div className="absolute right-0 top-0 bottom-0 w-8 flex flex-col py-2 bg-black">
+        <div className="absolute right-0 top-0 bottom-1 w-8 flex flex-col bg-black">
           {alphabetList.map((letter) => (
             <div
               key={letter}
@@ -111,6 +133,8 @@ const Contacts: React.FC = () => {
           ))}
         </div>
       </div>
+      </div>
+    
     </div>
   );
 };
