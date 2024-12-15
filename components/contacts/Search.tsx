@@ -12,7 +12,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="h-[44px] w-full sm:w-[24.375rem] bg-[#9747FF] bg-opacity-30 rounded-lg mt-3 flex items-center px-3">
+    <div className="h-[44px] w-full sm:w-[24.375rem] bg-[#9747FF] bg-opacity-30 rounded-[12px] mt-3 flex items-center px-3">
       <Image
         src="/icons/contacts/search.png"
         height={15}

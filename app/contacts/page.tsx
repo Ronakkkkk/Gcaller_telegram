@@ -68,7 +68,7 @@ const Contacts: React.FC = () => {
   }, {} as Record<string, Contact[]>);
 
   return (
-    <div className="bg-black min-h-screen w-full flex flex-col pt-20 px-4 text-white  items-center">
+    <div className="bg-black min-h-screen w-full flex flex-col pt-[75px] px-4 text-white items-center">
       <Header />
       <Search onSearch={setSearchQuery} />
 
