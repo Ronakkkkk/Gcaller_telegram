@@ -7,6 +7,7 @@ import Header from "@/components/contacts/Header";
 import axios from "@/lib/axios";
 import VerifiedNotVerifiedCards from "@/components/contacts/VerifiedNotVerifiedCards";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ContactsResponse {
   status: number;
   data: Contact[];
@@ -35,7 +36,7 @@ const Contacts: React.FC = () => {
     try {
       // const { data, status } = await axios.get<ContactsResponse>("contacts/list");
       // setContacts(data.data);
-      const { data, status } = await axios.get<Contact[]>("contacts.json");
+      const { data } = await axios.get<Contact[]>("contacts.json");
       setContacts(data);
     } catch (err) {
       setError("Failed to load contacts");
