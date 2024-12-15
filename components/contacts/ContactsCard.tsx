@@ -30,8 +30,8 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ profilePictureUrl, phNo, na
                 </Avatar>
 
                 <div className="flex flex-col">
-                    <p className="text-[0.9rem] sm:text-[1rem] font-bold">{name}</p>
-                    <p className="text-[0.6rem] sm:text-[0.8rem] text-gray-300">
+                    <p className="text-[0.9rem] sm:text-[1rem] font-medium">{name}</p>
+                    <p className="text-[0.6rem] sm:text-[0.8rem] font-light text-gray-300">
                         (+91) {phNo}
                     </p>
                 </div>

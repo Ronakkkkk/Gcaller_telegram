@@ -6,6 +6,7 @@ import TextCard from "@/components/contacts/TextCard";
 import Search from "@/components/contacts/Search";
 import Header from "@/components/contacts/Header";
 import axios from "axios";
+import VerifiedNotVerifiedCards from "@/components/contacts/VerifiedNotVerifiedCards";
 
 interface Contact {
   id: number;
@@ -68,52 +69,33 @@ const Contacts: React.FC = () => {
   }, {} as Record<string, Contact[]>);
 
   return (
-    <div className="bg-black min-h-screen w-full flex flex-col pt-20 px-4 text-white  items-center">
+    <div className="bg-black min-h-screen w-full flex flex-col pt-[75px] px-4 text-white  items-center">
       <Header />
       <Search onSearch={setSearchQuery} />
 
       <div className="flex mt-[25px] justify-start w-full sm:w-[24.375rem] ">
+
         {/* Text Cards */}
-        <div className="flex flex-wrap">
-          <div onClick={() => setIsVerified(true)} className="mr-4 mb-2">
-            <TextCard
-              text="Verified"
-              style={
-                isVerified
-                  ? { }
-                  : {backgroundColor: "rgba(151, 71, 255, 0.3)" }
-              }
-            />
-          </div>
-          <div onClick={() => setIsVerified(false)}>
-            <TextCard
-              text="Not Verified"
-              style={
-                !isVerified
-                  ? {  }
-                  : {backgroundColor: "rgba(151, 71, 255, 0.3)"}
-              }
-            />
-          </div>
-        </div>
+        <VerifiedNotVerifiedCards />
+
       </div>
 
-      <div className="relative w-full max-w-[390px] h-[67vh]  flex">
+      <div className="relative w-full max-w-[390px] h-[67vh] flex ">
         {/* Contacts Scroll */}
         <ScrollArea className="w-[90%] h-[67vh] pr-2 pt-4 overflow-y-auto">
-  {alphabetList.map((letter) => (
-    <div key={letter} data-letter-group={letter}>
-      {groupedContacts[letter]?.map((contact) => (
-        <ContactsCard
-          key={contact.id}
-          profilePictureUrl={contact.profilePictureUrl}
-          phNo={contact.phNo}
-          name={contact.name}
-        />
-      ))}
-    </div>
-  ))}
-</ScrollArea>
+          {alphabetList.map((letter) => (
+            <div key={letter} data-letter-group={letter}>
+              {groupedContacts[letter]?.map((contact) => (
+                <ContactsCard
+                  key={contact.id}
+                  profilePictureUrl={contact.profilePictureUrl}
+                  phNo={contact.phNo}
+                  name={contact.name}
+                />
+              ))}
+            </div>
+          ))}
+        </ScrollArea>
 
 
         {/* Alphabet Scroller */}
@@ -122,7 +104,7 @@ const Contacts: React.FC = () => {
             <div
               key={letter}
               onClick={() => handleLetterClick(letter)}
-              className=" text-xs cursor-pointer hover:text-purple-500 text-center flex-1 flex items-center justify-center"
+              className="text-[8px] font-bold cursor-pointer hover:text-purple-700 text-center flex-1 flex items-center justify-center "
             >
               {letter}
             </div>

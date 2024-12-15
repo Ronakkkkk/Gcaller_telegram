@@ -22,7 +22,7 @@ const AlphaNumericSlider: React.FC<AlphaNumericSliderProps>  = ({ list, onClick 
   }, [])
 
   return (
-    <div className="alphanum-list" ref={letterList}>
+    <div ref={letterList}>
       {list.map((letter) => (
         <div key={letter} onClick={() => onClick()}>
           {letter}
