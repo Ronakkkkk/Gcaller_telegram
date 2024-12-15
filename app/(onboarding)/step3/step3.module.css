@@ -56,8 +56,8 @@
     width: 212px;
     height: 60px;
     padding: 1rem;
-     background: #9747FF;
-margin-bottom: 2rem;
+    background: #9747FF;
+    margin-bottom: 2rem;
     color:  #FFFFFF;
 
     border: 2px solid #000000;
@@ -67,6 +67,7 @@ margin-bottom: 2rem;
     font-weight: 500;
     z-index: 10;
     transition: background 0.3s;
+    text-align: center;
   }
   
   .launchButton:hover {

@@ -1,5 +1,4 @@
 'use client';
-import { useState } from "react";
 import Image from "next/image";
 import DashedBorder from "./components/border";
 import Card from "./components/card";
