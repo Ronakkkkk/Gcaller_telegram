@@ -16,6 +16,7 @@ interface Contact {
   verified: boolean;
 }
 
+
 const Contacts: React.FC = () => {
   const [isVerified, setIsVerified] = useState(true);
   const [contacts, setContacts] = useState<Contact[]>([]);
