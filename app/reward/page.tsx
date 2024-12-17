@@ -1,23 +1,55 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-const page = () => {
-  return (
-    <div className='bg-black min-h-[1203px] w-full flex flex-col pt-[98px] px-4 text-white items-center'>
-        {/*Header Card */}
-        
-        <Image
-            src={'icons/reward/rewardHeader.png'}
-            width={384}
-            height={197}
-            alt=''
-            className=' absolute top-[50px]'
-          />
-          <div className=' flex flex-start'>
-           <h1 className=' text-white relative max-w-[212px] text-[28.79px]  top-[50px]'>Hello</h1>
-          </div>
-   
-    </div>
-  )
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/reward/ui/accordion"
+import BottomNavBar from '@/components/reward/BottomNavBar'
+import EarlyRules from '@/components/reward/EarlyRules'
+import History from '@/components/reward/History'
+import Header from '@/components/reward/Header'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/contacts/ui/avatar'
+import Leaderboard from '@/components/reward/Leaderboard'
+import axios from 'axios'
+
+interface Contact {
+    id: number;
+    profilePictureUrl: string;
+    phNo: string;
+    name: string;
+    verified: boolean;
 }
 
-export default page
+
+const page = () => {
+
+    return (
+        <div className="bg-black min-h-screen w-full flex flex-col text-white items-center">
+            {/* Header Section */}
+            <Header />
+
+            {/* History Section */}
+            <History />
+
+            {/* Earn Rules Section */}
+            <EarlyRules />
+
+            {/* Leaderboard Section */}
+          
+                        <Leaderboard />
+              
+            
+
+            {/* Bottom Navigation Bar */}
+            <div className="fixed bottom-0 left-0 w-full">
+                <BottomNavBar  />
+            </div>
+        </div>
+    );
+};
+
+export default page;
+
