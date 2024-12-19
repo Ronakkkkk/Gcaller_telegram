@@ -7,7 +7,6 @@ import Header from "@/components/contacts/Header";
 import axios from "@/lib/axios";
 import TextCard from "@/components/contacts/TextCard";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ContactsResponse {
   status: number;
   data: Contact[];
@@ -30,7 +29,6 @@ interface Contact {
 }
 
 const Contacts: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isVerified, setIsVerified] = useState(true);
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -40,11 +38,9 @@ const Contacts: React.FC = () => {
 
   const fetchContactsData = async () => {
     try {
-      const { data, status } = await axios.get<ContactsResponse>("contacts/list");
-      console.log(data);
+      const { data } = await axios.get<ContactsResponse>("contacts/list");
+      // TODO: handle 404,400 cases
       setContacts(data.data);
-      // const { data } = await axios.get<Contact[]>("contacts.json");
-      // setContacts(data);
     } catch (err) {
       setError("Failed to load contacts");
       console.error(err);

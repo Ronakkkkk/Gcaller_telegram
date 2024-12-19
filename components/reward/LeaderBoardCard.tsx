@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '../contacts/ui/avatar'
 interface LeaderBoard {
     imageUrl: string;

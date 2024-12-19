@@ -1,20 +1,12 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/reward/ui/accordion"
+import React, {  } from 'react'
 import BottomNavBar from '@/components/reward/BottomNavBar'
 import EarlyRules from '@/components/reward/EarlyRules'
 import History from '@/components/reward/History'
 import Header from '@/components/reward/Header'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/contacts/ui/avatar'
 import Leaderboard from '@/components/reward/Leaderboard'
-import axios from 'axios'
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Contact {
     id: number;
     profilePictureUrl: string;
