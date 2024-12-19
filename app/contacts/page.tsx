@@ -4,9 +4,8 @@ import { ScrollArea } from "@/components/contacts/ui/scroll-area";
 import ContactsCard from "@/components/contacts/ContactsCard";
 import Search from "@/components/contacts/Search";
 import Header from "@/components/contacts/Header";
-import axios from "axios";
+import axios from "@/lib/axios";
 import TextCard from "@/components/contacts/TextCard";
-
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ContactsResponse {
@@ -17,11 +16,17 @@ interface ContactsResponse {
 }
 
 interface Contact {
-  id: number;
-  profilePictureUrl: string;
-  phNo: string;
-  name: string;
-  verified: boolean;
+  _id: string;
+  fullName: string;
+  firstName: string;
+  lastName: string;
+  contactNumber: string;
+  spamCount: number;
+  verifiedCount: number;
+  contactId: string;
+  isVerified: boolean;
+  createdDate: string;
+  isFirst: boolean;
 }
 
 const Contacts: React.FC = () => {
@@ -35,10 +40,11 @@ const Contacts: React.FC = () => {
 
   const fetchContactsData = async () => {
     try {
-      // const { data, status } = await axios.get<ContactsResponse>("contacts/list");
-      // setContacts(data.data);
-      const { data } = await axios.get<Contact[]>("contacts.json");
-      setContacts(data);
+      const { data, status } = await axios.get<ContactsResponse>("contacts/list");
+      console.log(data);
+      setContacts(data.data);
+      // const { data } = await axios.get<Contact[]>("contacts.json");
+      // setContacts(data);
     } catch (err) {
       setError("Failed to load contacts");
       console.error(err);
@@ -50,16 +56,16 @@ const Contacts: React.FC = () => {
   }, []);
 
   const sortedContacts = useMemo(
-    () => contacts.sort((a, b) => a.name.localeCompare(b.name)),
+    () => contacts.sort((a, b) => a.firstName.localeCompare(b.firstName)),
     [contacts]
   );
 
   const filteredContacts = useMemo(() => {
     const filteredByVerified = sortedContacts.filter((contact) =>
-      isVerified ? contact.verified : !contact.verified
+      isVerified ? contact.isVerified : !contact.isVerified
     );
     return filteredByVerified.filter((contact) =>
-      contact.name.toLowerCase().includes(searchQuery.toLowerCase())
+      contact.fullName.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [sortedContacts, isVerified, searchQuery]);
 
@@ -73,7 +79,7 @@ const Contacts: React.FC = () => {
   }
 
   const groupedContacts = filteredContacts.reduce((acc, contact) => {
-    const firstLetter = contact.name[0].toUpperCase();
+    const firstLetter = contact.fullName[0].toUpperCase();
     if (!acc[firstLetter]) acc[firstLetter] = [];
     acc[firstLetter].push(contact);
     return acc;
@@ -83,67 +89,58 @@ const Contacts: React.FC = () => {
     <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] overflow-hidden min-h-screen w-full flex flex-col text-white  items-center p-0 m-0">
 
       <div className=" mt-[75px] w-full px-4 flex flex-col text-white  items-center">
-      <Header />
-      <Search onSearch={setSearchQuery} />
+        <Header />
+        <Search onSearch={setSearchQuery} />
 
-      <div className="flex mt-[25px] justify-start w-full sm:w-[24.375rem] ">
-        {/* Text Cards */}
-        <div className="flex flex-wrap font-medium">
-    <div onClick={() => setIsVerified(true)} className="mr-4 mb-2">
-      <TextCard
-        text="Verified"
-        style={
-          isVerified
-            ? {}
-            : {backgroundColor: "rgba(151, 71, 255, 0.3)" }
-        }
-      />
-    </div>
-    <div onClick={() => setIsVerified(false)}>
-      <TextCard
-        text="Not Verified"
-        style={
-          !isVerified
-            ? {}
-            : {backgroundColor: "rgba(151, 71, 255, 0.3)"}
-        }
-      />
-    </div>
-  </div>
-      </div>
-
-      <div className="relative w-full max-w-[390px] h-[68vh] flex ">
-        {/* Contacts Scroll */}
-        <ScrollArea className="w-[90%] h-[68vh] pr-2 pt-4 overflow-y-auto">
-          {alphabetList.map((letter) => (
-            <div key={letter} data-letter-group={letter}>
-              {groupedContacts[letter]?.map((contact) => (
-                <ContactsCard
-                  key={contact.id}
-                  profilePictureUrl={contact.profilePictureUrl}
-                  phNo={contact.phNo}
-                  name={contact.name}
-                />
-              ))}
+        <div className="flex mt-[25px] justify-start w-full sm:w-[24.375rem] ">
+          {/* Text Cards */}
+          <div className="flex flex-wrap font-medium">
+            <div onClick={() => setIsVerified(true)} className="mr-4 mb-2">
+              <TextCard
+                text="Verified"
+                style={isVerified ? {} : { backgroundColor: "rgba(151, 71, 255, 0.3)" }}
+              />
             </div>
-          ))}
-        </ScrollArea>
-
-        {/* Alphabet Scroller */}
-        <div className="absolute right-0 top-0 bottom-1 w-8 flex flex-col bg-black">
-          {alphabetList.map((letter) => (
-            <div
-              key={letter}
-              onClick={() => handleLetterClick(letter)}
-              className="text-[8px] font-bold cursor-pointer hover:text-purple-700 text-center flex-1 flex items-center justify-center "
-            >
-              {letter}
+            <div onClick={() => setIsVerified(false)}>
+              <TextCard
+                text="Not Verified"
+                style={!isVerified ? {} : { backgroundColor: "rgba(151, 71, 255, 0.3)" }}
+              />
             </div>
-          ))}
+          </div>
+        </div>
+
+        <div className="relative w-full max-w-[390px] h-[68vh] flex ">
+          {/* Contacts Scroll */}
+          <ScrollArea className="w-[90%] h-[68vh] pr-2 pt-4 overflow-y-auto">
+            {alphabetList.map((letter) => (
+              <div key={letter} data-letter-group={letter}>
+                {groupedContacts[letter]?.map((contact) => (
+                  <ContactsCard
+                    key={contact._id}
+                    profilePictureUrl={''}
+                    phNo={contact.contactNumber}
+                    name={contact.fullName}
+                  />
+                ))}
+              </div>
+            ))}
+          </ScrollArea>
+
+          {/* Alphabet Scroller */}
+          <div className="absolute right-0 top-0 bottom-1 w-8 flex flex-col bg-black">
+            {alphabetList.map((letter) => (
+              <div
+                key={letter}
+                onClick={() => handleLetterClick(letter)}
+                className="text-[8px] font-bold cursor-pointer hover:text-purple-700 text-center flex-1 flex items-center justify-center "
+              >
+                {letter}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      </div>
-    
     </div>
   );
 };
