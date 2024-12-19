@@ -27,25 +27,18 @@ interface Contact {
 const page = () => {
 
     return (
-        <div className="bg-black min-h-screen w-full flex flex-col text-white items-center">
+        <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col p-0 m-0 text-white items-center" >
             {/* Header Section */}
             <Header />
-
             {/* History Section */}
             <History />
-
             {/* Earn Rules Section */}
             <EarlyRules />
-
             {/* Leaderboard Section */}
-          
-                        <Leaderboard />
-              
-            
-
+            <Leaderboard />
             {/* Bottom Navigation Bar */}
             <div className="fixed bottom-0 left-0 w-full">
-                <BottomNavBar  />
+                <BottomNavBar />
             </div>
         </div>
     );
