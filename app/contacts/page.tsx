@@ -80,7 +80,7 @@ const Contacts: React.FC = () => {
   }, {} as Record<string, Contact[]>);
 
   return (
-    <div className="bg-black min-h-screen w-full flex flex-col text-white  items-center">
+    <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] overflow-hidden min-h-screen w-full flex flex-col text-white  items-center p-0 m-0">
 
       <div className=" mt-[75px] w-full px-4 flex flex-col text-white  items-center">
       <Header />
