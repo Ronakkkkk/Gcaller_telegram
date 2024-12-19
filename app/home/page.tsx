@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 
 const Home: React.FC = () => {
-  const callBalance = 25;
+  // const callBalance = 25;
   const spamDetected = 30;
   const totalContacts = 100;
   // const faqs = [
