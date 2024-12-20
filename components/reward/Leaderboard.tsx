@@ -19,33 +19,40 @@ const Leaderboard = () => {
   // Fetch contacts data
   const fetchContactsData = async () => {
     try {
-      const { data } = await axios.get<Contact[]>("contacts.json");
-
+      const response  = await axios.get<Contact[]>("contacts.json");
+      const data = response.data;
       const sortedContacts = data.sort((a, b) => b.rewardPoints - a.rewardPoints);
       setContacts(sortedContacts);
     } catch (err) {
-      setError("Failed to load contacts");
-      console.error(err);
+      if (axios.isAxiosError(err)){
+        setError(err.message);
+        console.error(err);
+      }else if(err instanceof Error){
+        setError(err.message);
+        console.error(err.message);
+      }else{
+        setError("An unexpected Error Occured");
+      }
+      
     }
   };
 
-  // Fetch data on component mount
+ 
   useEffect(() => {
     fetchContactsData();
   }, []);
 
   return (
-    <div className="w-full max-w-[400px] px-4 mt-10 mb-16">
-      <h1 className="text-[16px] text-gray-400 text-center mb-4 opacity-[16%]">Leaderboard</h1>
-
-      {/* Display error if it occurs */}
-      {error && <p className="text-red-500 text-center">{error}</p>}
+    <div className="w-full max-w-[400px] px-4 mt-11 mb-16">
+      <h1 className="text-[16px] text-gray-400 text-center mb-6 opacity-[16%]">Leaderboard</h1>
+    
 
       {/* Render contacts */}
-      {contacts.length > 0 ? (
+      
+      {!error ? contacts.length > 0 ? (
         contacts.map((contact) => (
           <LeaderBoardCard
-            key={contact.id} // Add unique key
+            key={contact.id}
             imageUrl={contact.profilePictureUrl}
             username={contact.name}
             reward={contact.rewardPoints}
@@ -53,7 +60,7 @@ const Leaderboard = () => {
         ))
       ) : (
         !error && <p className="text-gray-500 text-center">Loading...</p>
-      )}
+      ) : <p className="text-gray-500 text-center">{error}</p>}
     </div>
   );
 };

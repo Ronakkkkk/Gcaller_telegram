@@ -42,11 +42,15 @@ const accordionData = [
     },
 ];
 
+const AccordionContentStyle= "mt-2 w-full max-w-[350px] text-[12px] text-gray-400 break-words text-left";
+const AccordionTriggerStyle = "flex items-center font-normal text-[12px] md:text-[14px] text-left w-full break-words";
+const AccordionItemStyle= "border-[1px] border-[rgba(255, 255, 255, 0.3)] border-opacity-30  px-4 py-1  bg-[#9747FF] bg-opacity-[10%] rounded-lg";
+
 const EarlyRules = () => {
     return (
         <div className="relative top-6 flex items-center justify-center">
             <div className="text-center w-full max-w-[359px]">
-                <h1 className="text-[16px] md:text-[18px] opacity-30 mb-4">
+                <h1 className="text-[16px] md:text-[18px] opacity-30 mb-6">
                     Earn Rules
                 </h1>
                 <Accordion
@@ -58,10 +62,10 @@ const EarlyRules = () => {
                         <AccordionItem
                             key={id}
                             value={id}
-                            className="border-[1px] border-[rgba(255, 255, 255, 0.3)] border-opacity-30  px-4 py-1  bg-[#9747FF] bg-opacity-[10%] rounded-lg"
+                            className={AccordionItemStyle}
                         >
                             <div className="w-full">
-                                <AccordionTrigger className="flex items-center font-normal text-[12px] md:text-[14px] text-left w-full break-words">
+                                <AccordionTrigger className={AccordionTriggerStyle}>
                                     <Image
                                         src={icon}
                                         height={16}
@@ -73,7 +77,7 @@ const EarlyRules = () => {
                                         {triggerText}
                                     </p>
                                 </AccordionTrigger>
-                                <AccordionContent className="mt-2 w-full max-w-[350px] text-[12px] text-gray-400 break-words text-left">
+                                <AccordionContent className={AccordionContentStyle}>
                                     {content}
                                 </AccordionContent>
                             </div>
