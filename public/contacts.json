@@ -1,80 +1,90 @@
 [
-    {
-      "id": 1,
-      "profilePictureUrl": "/icons/contacts/pp.png",
-      "phNo": "+1234567890",
-      "name": "Anam",
-      "verified": true
-    },
-    {
-      "id": 2,
-      "profilePictureUrl": "https://www.kfadv.it/wp-content/uploads/Bored_Apes.jpg",
-      "phNo": "+1987654321",
-      "name": "Baman",
-      "verified": true
-    },
-    {
-      "id": 3,
-      "profilePictureUrl": "https://i.guim.co.uk/img/media/b8a75934f827bdaf02a3814d1669c8da19886881/0_727_3500_2100/master/3500.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=1ad9e12c908d182c891b03abc19988f4",
-      "phNo": "+1987654321",
-      "name": "Jane Smith",
-      "verified": true
-    },
-    {
-      "id": 4,
-      "profilePictureUrl": "/icons/contacts/pp.png",
-      "phNo": "+1987654321",
-      "name": "mathew",
-      "verified": true
-    },
-    {
-      "id": 5,
-      "profilePictureUrl": "/icons/contacts/pp.png",
-      "phNo": "+1987654321",
-      "name": "John",
-      "verified": true
-    },
-    {
-      "id": 6,
-      "profilePictureUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Dreamtheater_-_Wacken_Open_Air_2015-1619_%28cropped%29.jpg/1200px-Dreamtheater_-_Wacken_Open_Air_2015-1619_%28cropped%29.jpg",
-      "phNo": "+1987654321",
-      "name": "Petrucci",
-      "verified": false
-    },
-    {
-      "id": 7,
-      "profilePictureUrl": "/icons/contacts/pp.png",
-      "phNo": "+1987654321",
-      "name": "Slash",
-      "verified": false
-    },
-    {
-      "id": 8,
-      "profilePictureUrl": "https://www.rollingstone.com/wp-content/uploads/2020/02/10182635cW.jpg",
-      "phNo": "+1987654321",
-      "name": "Joe Satriani",
-      "verified": false
-    },
-    {
-      "id": 9,
-      "profilePictureUrl": "https://m.media-amazon.com/images/I/71hioYcmOKL._UF1000,1000_QL80_.jpg",
-      "phNo": "+1987654321",
-      "name": "Steve Vai",
-      "verified": true
-    },
-    {
-      "id": 10,
-      "profilePictureUrl": "https://townsquare.media/site/366/files/2020/01/GettyImages-535921746.jpg?w=780&q=75",
-      "phNo": "+1987654321",
-      "name": "Axl Rose",
-      "verified": true
-    },
-    {
-      "id": 11,
-      "profilePictureUrl": "https://cdn.otherbrick.com/wp-content/uploads/2023/10/David-Gilmour-2.jpg",
-      "phNo": "+1987654321",
-      "name": "David Gilmour",
-      "verified": true
-    }
-  ]
-  
+  {
+    "id": 1,
+    "profilePictureUrl": "/icons/contacts/pp.png",
+    "phNo": "+1234567890",
+    "name": "Anam",
+    "verified": true,
+    "rewardPoints": 2500
+  },
+  {
+    "id": 2,
+    "profilePictureUrl": "https://www.kfadv.it/wp-content/uploads/Bored_Apes.jpg",
+    "phNo": "+1987654321",
+    "name": "Baman",
+    "verified": true,
+    "rewardPoints": 3000
+  },
+  {
+    "id": 3,
+    "profilePictureUrl": "https://i.guim.co.uk/img/media/b8a75934f827bdaf02a3814d1669c8da19886881/0_727_3500_2100/master/3500.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=1ad9e12c908d182c891b03abc19988f4",
+    "phNo": "+1987654321",
+    "name": "Jane Smith",
+    "verified": true,
+    "rewardPoints": 1800
+  },
+  {
+    "id": 4,
+    "profilePictureUrl": "/icons/contacts/pp.png",
+    "phNo": "+1987654321",
+    "name": "mathew",
+    "verified": true,
+    "rewardPoints": 2200
+  },
+  {
+    "id": 5,
+    "profilePictureUrl": "/icons/contacts/pp.png",
+    "phNo": "+1987654321",
+    "name": "John",
+    "verified": true,
+    "rewardPoints": 1500
+  },
+  {
+    "id": 6,
+    "profilePictureUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Dreamtheater_-_Wacken_Open_Air_2015-1619_%28cropped%29.jpg/1200px-Dreamtheater_-_Wacken_Open_Air_2015-1619_%28cropped%29.jpg",
+    "phNo": "+1987654321",
+    "name": "Petrucci",
+    "verified": false,
+    "rewardPoints": 1000
+  },
+  {
+    "id": 7,
+    "profilePictureUrl": "/icons/contacts/pp.png",
+    "phNo": "+1987654321",
+    "name": "Slash",
+    "verified": false,
+    "rewardPoints": 1200
+  },
+  {
+    "id": 8,
+    "profilePictureUrl": "https://www.rollingstone.com/wp-content/uploads/2020/02/10182635cW.jpg",
+    "phNo": "+1987654321",
+    "name": "Joe Satriani",
+    "verified": false,
+    "rewardPoints": 1700
+  },
+  {
+    "id": 9,
+    "profilePictureUrl": "https://m.media-amazon.com/images/I/71hioYcmOKL._UF1000,1000_QL80_.jpg",
+    "phNo": "+1987654321",
+    "name": "Steve Vai",
+    "verified": true,
+    "rewardPoints": 3500
+  },
+  {
+    "id": 10,
+    "profilePictureUrl": "https://townsquare.media/site/366/files/2020/01/GettyImages-535921746.jpg?w=780&q=75",
+    "phNo": "+1987654321",
+    "name": "Axl Rose",
+    "verified": true,
+    "rewardPoints": 2800
+  },
+  {
+    "id": 11,
+    "profilePictureUrl": "https://cdn.otherbrick.com/wp-content/uploads/2023/10/David-Gilmour-2.jpg",
+    "phNo": "+1987654321",
+    "name": "David Gilmour",
+    "verified": true,
+    "rewardPoints": 4000
+  }
+]

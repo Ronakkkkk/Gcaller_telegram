@@ -1,23 +1,40 @@
-import React from 'react'
-import Image from 'next/image'
-const page = () => {
-  return (
-    <div className='bg-black min-h-[1203px] w-full flex flex-col pt-[98px] px-4 text-white items-center'>
-        {/*Header Card */}
-        
-        <Image
-            src={'icons/reward/rewardHeader.png'}
-            width={384}
-            height={197}
-            alt=''
-            className=' absolute top-[50px]'
-          />
-          <div className=' flex flex-start'>
-           <h1 className=' text-white relative max-w-[212px] text-[28.79px]  top-[50px]'>Hello</h1>
-          </div>
-   
-    </div>
-  )
+"use client"
+import React, {  } from 'react'
+import BottomNavBar from '@/components/reward/BottomNavBar'
+import EarlyRules from '@/components/reward/EarlyRules'
+import History from '@/components/reward/History'
+import Header from '@/components/reward/Header'
+import Leaderboard from '@/components/reward/Leaderboard'
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface Contact {
+    id: number;
+    profilePictureUrl: string;
+    phNo: string;
+    name: string;
+    verified: boolean;
 }
 
-export default page
+
+const page = () => {
+
+    return (
+        <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col p-0 m-0 text-white items-center" >
+            {/* Header Section */}
+            <Header />
+            {/* History Section */}
+            <History />
+            {/* Earn Rules Section */}
+            <EarlyRules />
+            {/* Leaderboard Section */}
+            <Leaderboard />
+            {/* Bottom Navigation Bar */}
+            <div className="fixed bottom-0 left-0 w-full">
+                <BottomNavBar />
+            </div>
+        </div>
+    );
+};
+
+export default page;
+
