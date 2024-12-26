@@ -6,6 +6,7 @@ import TextCard from "@/components/contacts/TextCard";
 import Search from "@/components/contacts/Search";
 import Header from "@/components/contacts/Header";
 import axios from "axios";
+import BottomNavBar from "@/components/BottomNavBar";
 interface Contact {
   id: number;
   profilePictureUrl: string;
@@ -107,9 +108,9 @@ const Contacts: React.FC = () => {
   </div>
       </div>
 
-      <div className="relative w-full max-w-[390px] h-[68vh] flex ">
+      <div className="relative w-full max-w-[390px] h-[62vh] flex ">
         {/* Contacts Scroll */}
-        <ScrollArea className="w-[90%] h-[68vh] pr-2 pt-4 overflow-y-auto">
+        <ScrollArea className="w-[90%] h-[62vh] pr-2 pt-4 overflow-y-auto">
 
           {!error ? alphabetList.map((letter) => (
             <div key={letter} data-letter-group={letter}>
@@ -127,7 +128,7 @@ const Contacts: React.FC = () => {
 
 
         {/* Alphabet Scroller */}
-        <div className="absolute right-0 top-0 bottom-1 w-8 flex flex-col bg-black">
+        <div className="absolute right-0 top-0 bottom-0 w-8 flex flex-col bg-black">
           {alphabetList.map((letter) => (
             <div
               key={letter}
@@ -138,7 +139,12 @@ const Contacts: React.FC = () => {
             </div>
           ))}
         </div>
+          {/* Bottom Navbar */}
+<div className="fixed bottom-0 left-0 w-full h-[50px] bg-black">
+  <BottomNavBar />
+</div>
       </div>
+      
       </div>
     
     </div>
