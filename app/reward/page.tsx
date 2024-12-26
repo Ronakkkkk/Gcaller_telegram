@@ -7,19 +7,31 @@ import Header from "@/components/reward/Header";
 import Leaderboard from "@/components/reward/Leaderboard";
 import TopBar from "@/components/reward/TopBar";
 
+
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface Contact {
+    id: number;
+    profilePictureUrl: string;
+    phNo: string;
+    name: string;
+    verified: boolean;
+}
+
+
 const Page = () => {
     const pageStyle =
-        "bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col items-center text-white";
+    "bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col items-center text-white";
 
     return (
         <div className={pageStyle}>
             <TopBar />
             {/* Header Section */}
-            <div className="w-full px-4 mt-4">
+            <div className="w-full px-4 mt-6 ">
                 <Header />
             </div>
             {/* History Section */}
-            <div className="w-full px-4 mt-6">
+            <div className="w-full px-4 mt-6 max-w-[400px]">
                 <History />
             </div>
             {/* Earn Rules Section */}
@@ -27,7 +39,7 @@ const Page = () => {
                 <EarlyRules />
             </div>
             {/* Leaderboard Section */}
-            <div className="w-full px-4 mt-6">
+            <div className="w-full px-4 mt-6 max-w-[400px]">
                 <Leaderboard />
             </div>
             {/* Bottom Navigation Bar */}
