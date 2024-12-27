@@ -1,58 +1,50 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
+import CallBalance from './components/callBalance';
+import DashedBorder from './components/border';
+import RewardBar from './components/rewardbar';
+import FAQSection from './components/faq';
+// import ClipboardComponent from './components/ClipboardComponent'; // Import the ClipboardComponent
 
-
-const Home: React.FC = () => {
-  // const callBalance = 25;
+const Home = () => {
   const spamDetected = 30;
   const totalContacts = 100;
-  // const faqs = [
-  //   {
-  //     question: 'What is ZK Verification?',
-  //     answer: 'ZK Verification is a cryptographic technique that allows you to prove certain statements without revealing any additional information.'
-  //   },
-  //   {
-  //     question: 'What is CallNetwork?',
-  //     answer: 'CallNetwork is a service that provides secure and reliable voice communication capabilities.'
-  //   },
-  //   {
-  //     question: 'What is Network State?',
-  //     answer: 'Network State refers to the current condition and status of a communication network.'
-  //   }
-  // ];
+  const callBalacneamount = 500;
+  const address = "4Uj3En..........m1toot"; // Store the address as a constant
 
   return (
-    <div className="bg-black flex flex-col items-start justify-start w-full">
+    <div className="bg-black w-96 min-h-screen text-white overflow-hidden mx-auto">
       <Image
         src="/home/pfp.png"
         alt="Profile Picture"
         height={306}
-        width={306}
-        className="h-[306px] w-full object-contain"
+        width={390}
+        className="w-full object-cover"
         priority
       />
+      
+      <div className="-mt-10 relative z-10">
+        <div className="bg-[#21172C] rounded-t-3xl border-2 border-[#9747FF99] px-5 py-4 space-y-5">
+          <div className="flex flex-col items-center justify-center w-full gap-1">
+            <h1 className="text-2xl font-normal leading-9">Welcome Kash</h1>
+            <div className='w-full flex items-center justify-center gap-3'>
+              <p className="text-sm font-normal leading-4 text-white/60">{address}</p>
+              {/* <ClipboardComponent value={address} message="Address copied to clipboard!" /> */}
+            </div>
+          </div>
 
-      <div className="w-[390px] h-[952px] gap-0 rounded-t-[30px] bg-gradient-to-r from-white/[0.06] to-white/[0.06] border border-purple-500/60 backdrop-blur-xl">
-        <div className="p-6 space-y-6">
-          <h1 className="text-white text-2xl font-bold">Welcome Kash</h1>
-          {/* <CallBalance balance={callBalance} /> */}
-          <div className="flex justify-between">
-            <div className="bg-gray-800 px-4 py-2 rounded-lg">
-              <span className="text-white font-bold">Total Contacts</span>
-              <span className="text-white font-bold">{totalContacts}</span>
-            </div>
-            <div className="bg-gray-800 px-4 py-2 rounded-lg">
-              <span className="text-white font-bold">Spam Detected</span>
-              <span className="text-white font-bold">{spamDetected}</span>
-            </div>
-          </div>
-          <div className="bg-gray-800 p-4 rounded-lg">
-            <h2 className="text-white font-bold">Reward Progress</h2>
-            <div className="w-full h-4 bg-gray-700 rounded-full mt-2">
-              <div className="h-full bg-purple-500 rounded-full" style={{ width: '50%' }}></div>
-            </div>
-          </div>
-          {/* <FAQs faqs={faqs} /> */}
+          <DashedBorder/>
+
+          <CallBalance
+            amount={callBalacneamount}
+          />
+
+          <RewardBar
+            amount={70}
+          />
+
+          <FAQSection/>
         </div>
       </div>
     </div>
