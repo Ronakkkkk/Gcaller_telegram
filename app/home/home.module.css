@@ -1,37 +1,12 @@
-.container {
-  /* Size */
-  width: 390px;
-  height: 952px;
-
-  /* Positioning */
-  position: relative; /* Allows for 'top' adjustment */
-  top: 272px;
-
-  /* Spacing */
-  gap: 0px;
-
-  /* Border */
-  border-radius: 30px 30px 0px 0px;
-  border: 1.6px solid rgba(151, 71, 255, 0.6); /* Border color as specified */
-
-  /* Opacity */
-  opacity: 1; /* Make container visible; 0px in your spec is invalid */
-
-  /* Background */
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.06) 100%
-  );
-
-  /* Blur Effect */
-  backdrop-filter: blur(324px); /* Applies the blur effect to background */
-  -webkit-backdrop-filter: blur(324px); /* Ensure Safari compatibility */
-
-  /* Overflow & Centering */
-  overflow: hidden;
-  display: flex; /* Use flexbox for content alignment if needed */
-  align-items: center;
-  justify-content: center;
+.conatiner{
+  width: 100%;
+  height: auto;
+  border-radius:30px ;
+  /* background: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.06) 100%); */
+  background-color: red;
+  border: 1.6px solid rgba(151, 71, 255, 0.6); /* #9747FF99 */
   
+  padding: 20px;
+  
+
 }

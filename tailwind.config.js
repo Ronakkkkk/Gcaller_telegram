@@ -13,7 +13,16 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-  		colors: {},
+  		colors: {
+			safari: "#FFD700", // Replace with your desired Safari color
+        	foreground: "#333333",
+        	muted: "#CCCCCC",
+        	"muted-foreground": "#999999",
+        	background: "#FFFFFF",
+			chart: {
+				2: "#1E90FF", // Example color for `--chart-2`
+			  },
+		},
   		keyframes: {
   			'accordion-down': {
   				from: {
