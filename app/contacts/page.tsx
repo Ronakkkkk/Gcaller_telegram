@@ -81,9 +81,17 @@ const Contacts: React.FC = () => {
     return acc;
   }, {} as Record<string, Contact[]>);
 
+  // TODO: Handle no contacts case
+  // if (contacts.length == 0) {
+  //   return (
+  //     <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] overflow-hidden min-h-screen w-full flex flex-col text-white  items-center p-0 m-0">
+  //       <div>No contacts added yet</div>
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] overflow-hidden min-h-screen w-full flex flex-col text-white  items-center p-0 m-0">
-
       <div className=" mt-[75px] w-full px-4 flex flex-col text-white  items-center">
         <Header />
         <Search onSearch={setSearchQuery} />
@@ -114,7 +122,7 @@ const Contacts: React.FC = () => {
                 {groupedContacts[letter]?.map((contact) => (
                   <ContactsCard
                     key={contact._id}
-                    profilePictureUrl={''}
+                    profilePictureUrl={""}
                     phNo={contact.contactNumber}
                     name={contact.fullName}
                   />
