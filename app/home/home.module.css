@@ -7,6 +7,6 @@
   border: 1.6px solid rgba(151, 71, 255, 0.6); /* #9747FF99 */
   
   padding: 20px;
-  
+  z-index: 0;
 
 }

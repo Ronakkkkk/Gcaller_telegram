@@ -9,7 +9,7 @@ import {
 
 function FAQSection() {
     return (
-        <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-3 mb-20">
             <div className=' bg-[#9747FF1A] h-9 w-full rounded-[10px] items-center justify-center flex mt-3'>
                 <h1 className='font-medium text-xs leading-4 '>FAQ’s</h1>
             </div>

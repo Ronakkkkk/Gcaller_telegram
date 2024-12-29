@@ -17,29 +17,30 @@ interface Contact {
     name: string;
     verified: boolean;
 }
-
+//bg-gradient-to-b from-[#0F0015] to-[#1A0123]
 
 const Page = () => {
     const pageStyle =
-    "bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col items-center text-white";
+    " bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col items-center text-white overflow-x-hidden";
 
     return (
+        
         <div className={pageStyle}>
             <TopBar />
             {/* Header Section */}
-            <div className="w-full px-4 mt-6 ">
+            <div className="w-full pl-2 ">
                 <Header />
             </div>
             {/* History Section */}
-            <div className="w-full px-4 mt-6 max-w-[400px]">
+            <div className="w-full px-4 mt-[0.5rem] max-w-[400px]">
                 <History />
             </div>
             {/* Earn Rules Section */}
-            <div className="w-full px-4 mt-6">
+            <div className="w-full px-4 mt-[0.5rem]">
                 <EarlyRules />
             </div>
             {/* Leaderboard Section */}
-            <div className="w-full px-4 mt-6 max-w-[400px]">
+            <div className="w-full px-4 mt-[0.5rem] max-w-[400px]">
                 <Leaderboard />
             </div>
             {/* Bottom Navigation Bar */}

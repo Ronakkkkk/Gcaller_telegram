@@ -7,6 +7,7 @@ import UserData from "./components/UserData";
 import ReferCard from "./components/refer";
 import  {useEffect, useState} from 'react'
 import MilestoneCard from "./components/Milestonecard";
+import BottomNavBar from "@/components/BottomNavBar";
 
 export default function Dashboard() {
 
@@ -15,7 +16,7 @@ export default function Dashboard() {
     const [userTotalSpam, setUserTotalSpam]= useState<number>(50);
     
     return ( 
-        <div className="bg-black w-full h-full text-white px-5">
+        <div className="bg-black w-full h-full text-white px-5 mb-[4.6rem]">
             {/* Settings Icon */}
             <div className="w-full py-11 flex justify-end">
                 <div className={styles.settings}>
@@ -108,10 +109,11 @@ export default function Dashboard() {
                     src="/icons/dashboard/copy.png"
                     reflink="callntwk/referafriend-xyz"
                 />   
-
+                
             </div>
-
-             
+            
+            <BottomNavBar/>
+           
 
 
         </div>

@@ -43,8 +43,8 @@ const Leaderboard = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-[400px] px-4 mt-11 mb-16">
-      <h1 className="text-[16px] text-gray-400 text-center mb-6 opacity-[16%]">Leaderboard</h1>
+    <div className="w-full max-w-[500px] px-1 mt-11 mb-20">
+      <h1 className="text-[16px] w-full text-gray-400 text-center mb-6 opacity-[16%]">Leaderboard</h1>
     
 
       {/* Render contacts */}
