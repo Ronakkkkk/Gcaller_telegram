@@ -5,6 +5,7 @@ import { CircularProgress, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 
 // Create custom styled CircularProgress
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StyledCircularProgress = styled(CircularProgress)(({ theme }) => ({
   color: '#9747FF', 
   '& .MuiCircularProgress-circle': {
@@ -13,6 +14,7 @@ const StyledCircularProgress = styled(CircularProgress)(({ theme }) => ({
 }));
 
 // Create track CircularProgress
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TrackCircularProgress = styled(CircularProgress)(({ theme }) => ({
   color: '#44256b', 
   position: 'absolute',

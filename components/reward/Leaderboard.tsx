@@ -1,28 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "@/lib/axios";
 import LeaderBoardCard from "./LeaderBoardCard";
 
-interface Contact {
-  id: number;
-  profilePictureUrl: string;
-  phNo: string;
-  name: string;
-  verified: boolean;
-  rewardPoints: number;
+export interface ILeaderboardContact {
+  _id: string;
+  points: number;
+  firstName: string;
+  lastName: string;
 }
 
 const Leaderboard = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [contacts, setContacts] = useState<ILeaderboardContact[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch contacts data
   const fetchContactsData = async () => {
     try {
-      const { data } = await axios.get<Contact[]>("contacts.json");
-
-      const sortedContacts = data.sort((a, b) => b.rewardPoints - a.rewardPoints);
-      setContacts(sortedContacts);
+      const { data } = await axios.get<ILeaderboardContact[]>("user/leaderboard");
+      setContacts(data);
     } catch (err) {
       setError("Failed to load contacts");
       console.error(err);
@@ -42,18 +38,16 @@ const Leaderboard = () => {
       {error && <p className="text-red-500 text-center">{error}</p>}
 
       {/* Render contacts */}
-      {contacts.length > 0 ? (
-        contacts.map((contact) => (
-          <LeaderBoardCard
-            key={contact.id} // Add unique key
-            imageUrl={contact.profilePictureUrl}
-            username={contact.name}
-            reward={contact.rewardPoints}
-          />
-        ))
-      ) : (
-        !error && <p className="text-gray-500 text-center">Loading...</p>
-      )}
+      {contacts.length > 0
+        ? contacts.map((contact) => (
+            <LeaderBoardCard
+              key={contact._id} // Add unique key
+              imageUrl={""}
+              username={`${contact.firstName} ${contact.lastName}`}
+              reward={contact.points}
+            />
+          ))
+        : !error && <p className="text-gray-500 text-center">Loading...</p>}
     </div>
   );
 };
