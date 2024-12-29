@@ -54,8 +54,7 @@ const Home = () => {
           <DashedBorder />
 
           <CallBalance
-            amount={callBalacneamount}
-          />
+            amount={callBalacneamount} totalContactsCount={0} spamDetectedCount={0}          />
 
           <RewardBar
             amount={70}
