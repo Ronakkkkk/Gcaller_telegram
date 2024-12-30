@@ -1,11 +1,14 @@
-"use client"
-import React, {  } from 'react'
-import BottomNavBar from '@/components/reward/BottomNavBar'
-import EarlyRules from '@/components/reward/EarlyRules'
-import History from '@/components/reward/History'
-import Header from '@/components/reward/Header'
-import Leaderboard from '@/components/reward/Leaderboard'
+"use client";
+import React from "react";
+import BottomNavBar from "@/components/BottomNavBar";
+import EarlyRules from "@/components/reward/EarlyRules";
+import History from "@/components/reward/History";
+import Header from "@/components/reward/Header";
+import Leaderboard from "@/components/reward/Leaderboard";
+import TopBar from "@/components/reward/TopBar";
 
+
+  
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Contact {
     id: number;
@@ -14,20 +17,32 @@ interface Contact {
     name: string;
     verified: boolean;
 }
+//bg-gradient-to-b from-[#0F0015] to-[#1A0123]
 
-
-const page = () => {
+const Page = () => {
+    const pageStyle =
+    " bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col items-center text-white overflow-x-hidden";
 
     return (
-        <div className="bg-gradient-to-b from-[#0F0015] to-[#1A0123] min-h-screen w-full flex flex-col p-0 m-0 text-white items-center" >
+        
+        <div className={pageStyle}>
+            <TopBar />
             {/* Header Section */}
-            <Header />
+            <div className="w-full pl-2 ">
+                <Header />
+            </div>
             {/* History Section */}
-            <History />
+            <div className="w-full px-4 mt-[0.5rem] max-w-[400px]">
+                <History />
+            </div>
             {/* Earn Rules Section */}
-            <EarlyRules />
+            <div className="w-full px-4 mt-[0.5rem]">
+                <EarlyRules />
+            </div>
             {/* Leaderboard Section */}
-            <Leaderboard />
+            <div className="w-full px-4 mt-[0.5rem] max-w-[400px]">
+                <Leaderboard />
+            </div>
             {/* Bottom Navigation Bar */}
             <div className="fixed bottom-0 left-0 w-full">
                 <BottomNavBar />
@@ -36,5 +51,4 @@ const page = () => {
     );
 };
 
-export default page;
-
+export default Page;

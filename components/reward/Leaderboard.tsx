@@ -1,53 +1,66 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "@/lib/axios";
+import axios from "axios";
 import LeaderBoardCard from "./LeaderBoardCard";
 
-export interface ILeaderboardContact {
-  _id: string;
-  points: number;
-  firstName: string;
-  lastName: string;
+interface Contact {
+  id: number;
+  profilePictureUrl: string;
+  phNo: string;
+  name: string;
+  verified: boolean;
+  rewardPoints: number;
 }
 
 const Leaderboard = () => {
-  const [contacts, setContacts] = useState<ILeaderboardContact[]>([]);
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch contacts data
   const fetchContactsData = async () => {
     try {
-      const { data } = await axios.get<ILeaderboardContact[]>("user/leaderboard");
-      setContacts(data);
+      const response  = await axios.get<Contact[]>("contacts.json");
+      const data = response.data;
+      const sortedContacts = data.sort((a, b) => b.rewardPoints - a.rewardPoints);
+      setContacts(sortedContacts);
     } catch (err) {
-      setError("Failed to load contacts");
-      console.error(err);
+      if (axios.isAxiosError(err)){
+        setError(err.message);
+        console.error(err);
+      }else if(err instanceof Error){
+        setError(err.message);
+        console.error(err.message);
+      }else{
+        setError("An unexpected Error Occured");
+      }
+      
     }
   };
 
-  // Fetch data on component mount
+ 
   useEffect(() => {
     fetchContactsData();
   }, []);
 
   return (
-    <div className="w-full max-w-[400px] px-4 mt-10 mb-16">
-      <h1 className="text-[16px] text-gray-400 text-center mb-4 opacity-[16%]">Leaderboard</h1>
-
-      {/* Display error if it occurs */}
-      {error && <p className="text-red-500 text-center">{error}</p>}
+    <div className="w-full max-w-[500px] px-1 mt-11 mb-20">
+      <h1 className="text-[16px] w-full text-gray-400 text-center mb-6 opacity-[16%]">Leaderboard</h1>
+    
 
       {/* Render contacts */}
-      {contacts.length > 0
-        ? contacts.map((contact) => (
-            <LeaderBoardCard
-              key={contact._id} // Add unique key
-              imageUrl={""}
-              username={`${contact.firstName} ${contact.lastName}`}
-              reward={contact.points}
-            />
-          ))
-        : !error && <p className="text-gray-500 text-center">Loading...</p>}
+      
+      {!error ? contacts.length > 0 ? (
+        contacts.map((contact) => (
+          <LeaderBoardCard
+            key={contact.id}
+            imageUrl={contact.profilePictureUrl}
+            username={contact.name}
+            reward={contact.rewardPoints}
+          />
+        ))
+      ) : (
+        !error && <p className="text-gray-500 text-center">Loading...</p>
+      ) : <p className="text-gray-500 text-center">{error}</p>}
     </div>
   );
 };

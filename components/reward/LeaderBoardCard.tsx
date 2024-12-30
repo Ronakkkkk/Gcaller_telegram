@@ -8,7 +8,7 @@ interface LeaderBoard {
 
 const LeaderBoardCard: React.FC<LeaderBoard> = ({imageUrl, username, reward}) => {
   return (
-    <div className="w-ful mb-4 max-w-[359px] h-auto bg-[#9747FF1A] rounded-[12px] border border-gray-500 p-2 flex items-center space-x-5">
+    <div className="w-full mb-4 max-w-[400px] h-auto bg-[#9747FF1A] rounded-[12px] border border-gray-500 p-2 flex items-center space-x-5">
     {/* Avatar Section */}
 
     

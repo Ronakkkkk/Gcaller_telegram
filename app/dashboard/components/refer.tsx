@@ -13,7 +13,7 @@ const ReferCard: React.FC<ReferProps> = ({
 
 
   return (
-    <div className="flex flex-col w-full gap-4 py-1  ">
+    <div className="flex flex-col w-full gap-4 py-1 ">
         <h1 className="font-medium text-[16px] leading-5 justify-start">Refer your friends and earn <br/> 100 points (beta)</h1>
 
         <div className="w-full h-36 bg-[#9747FF] bg-opacity-20 flex flex-col  items-center px-3 py-5 gap-5 border border-white border-opacity-30 rounded-[12px] ">
